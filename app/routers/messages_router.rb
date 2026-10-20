@@ -10,7 +10,9 @@ class MessagesRouter
   end
 
   def run
-    loop do
+    puts "Ahoy! Welcome aboard the Codebeard chatbot."
+
+    while @running
       display_actions
       @choice = gets.chomp.to_i
       # call the correct controller
@@ -21,8 +23,8 @@ class MessagesRouter
   def route_action
     case @choice
     when 1 then @messages_controller.add
-    # when 2 then
-    # when 3 then
+    when 2 then @messages_controller.list
+    when 3 then stop
     else
       puts "Wrong action"
     end
@@ -32,8 +34,11 @@ class MessagesRouter
     puts "Hi Matey!"
     puts "1. Ask the pirate a question"
     puts "2. See all questions"
-    puts "3. Quit"
+    puts "3. Stop and quit"
   end
 
+  def stop
+    @running = false
+  end
 
 end
